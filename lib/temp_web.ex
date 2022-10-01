@@ -23,6 +23,7 @@ defmodule TempWeb do
 
       import Plug.Conn
       import TempWeb.Gettext
+      import TempWeb.AuthController, only: [authentication: 2]
       alias TempWeb.Router.Helpers, as: Routes
     end
   end
@@ -73,6 +74,7 @@ defmodule TempWeb do
 
       import Plug.Conn
       import Phoenix.Controller
+      import TempWeb.AuthController, only: [authentication: 2]
       import Phoenix.LiveView.Router
     end
   end
@@ -91,6 +93,7 @@ defmodule TempWeb do
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
+      import TempWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View

@@ -1,0 +1,39 @@
+<h1>Listing Genders</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.gender_index_path(@socket, :index)}>
+    <.live_component
+      module={TempWeb.GenderLive.FormComponent}
+      id={@gender.id || :new}
+      title={@page_title}
+      action={@live_action}
+      gender={@gender}
+      return_to={Routes.gender_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gender</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="genders">
+    <%= for gender <- @genders do %>
+      <tr id={"gender-#{gender.id}"}>
+        <td><%= gender.gender %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.gender_show_path(@socket, :show, gender) %></span>
+          <span><%= live_patch "Edit", to: Routes.gender_index_path(@socket, :edit, gender) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: gender.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Gender", to: Routes.gender_index_path(@socket, :new) %></span>

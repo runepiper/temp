@@ -4,6 +4,7 @@ defmodule TempWeb.UserController do
   alias Temp.Accounts
   alias Temp.Accounts.User
   plug :authentication when action in [:index, :show]
+  plug :load_genders when action in [:new, :create, :edit, :update]
 
   #rendering users-index page, (with authentication check)
   def index(conn, _params) do
@@ -35,15 +36,7 @@ defmodule TempWeb.UserController do
     end
   end
 
-  #check for authenticated user (when accessing secured sites)
-  defp authentication(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "Access denied! You're not logged in.")
-      |> redirect(to: Routes.page_path(conn, :index))
-      |> halt()
-    end
+  defp load_genders(conn, _) do
+    assign(conn, :genders, Temp.Enum.list_alphabetical_genders())
   end
 end

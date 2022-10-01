@@ -1,0 +1,39 @@
+<h1>Listing Sport</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.sport_index_path(@socket, :index)}>
+    <.live_component
+      module={TempWeb.SportLive.FormComponent}
+      id={@sport.id || :new}
+      title={@page_title}
+      action={@live_action}
+      sport={@sport}
+      return_to={Routes.sport_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sport</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="sport">
+    <%= for sport <- @sport_collection do %>
+      <tr id={"sport-#{sport.id}"}>
+        <td><%= sport.sport %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.sport_show_path(@socket, :show, sport) %></span>
+          <span><%= live_patch "Edit", to: Routes.sport_index_path(@socket, :edit, sport) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: sport.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Sport", to: Routes.sport_index_path(@socket, :new) %></span>

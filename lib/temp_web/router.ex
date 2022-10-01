@@ -15,14 +15,39 @@ defmodule TempWeb.Router do
     plug :accepts, ["json"]
   end
 
+  #general open scope (access for all)
   scope "/", TempWeb do
     pipe_through :browser
 
     get "/", PageController, :index
 
+    # User related routes (for login/granting further access)
+    resources "/users", UserController, only: [:new]
+    resources "/sessions", SessionController, only: [:new, :create]
+  end
+
+  #protected scope (access for management only)
+  scope "/", TempWeb do
+    pipe_through [:browser, :authentication]
+
     # User related routes
     resources "/users", UserController, only: [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:new, :create, :edit, :delete]
+    # Gender functionality for users
+    live "/genders", GenderLive.Index, :index
+    live "/genders/new", GenderLive.Index, :new
+    live "/genders/:id/edit", GenderLive.Index, :edit
+
+    live "/genders/:id", GenderLive.Show, :show
+    live "/genders/:id/show/edit", GenderLive.Show, :edit
+
+    # Sport related routes
+    live "/sport", SportLive.Index, :index
+    live "/sport/new", SportLive.Index, :new
+    live "/sport/:id/edit", SportLive.Index, :edit
+
+    live "/sport/:id", SportLive.Show, :show
+    live "/sport/:id/show/edit", SportLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

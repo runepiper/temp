@@ -14,6 +14,11 @@
     <%= error_tag f, :username %>
 </div>
 <div>
+    <%= label f, :gender, "Gender"%>
+    <%= select f, :gender, gender_select_options(@genders),
+        prompt: "Choose a gender" %>
+</div>
+<div>
     <%= text_input f, :mail, placeholder: "E-Mail" %>
     <%= error_tag f, :mail %>
 </div>

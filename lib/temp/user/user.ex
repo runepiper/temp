@@ -26,7 +26,7 @@ defmodule Temp.Accounts.User do
   def registration_changeset(user, params) do
     user
     |> changeset(params)
-    |> cast(params, [:name, :password, :mail, :password, :role])
+    |> cast(params, [:name, :mail, :password, :role])
     |> validate_required([:name, :username, :mail, :password, :role])
     |> validate_length(:username, min: 1, max: 20)
     |> validate_length(:password, min: 8, max: 256)
