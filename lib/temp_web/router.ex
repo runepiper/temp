@@ -8,6 +8,7 @@ defmodule TempWeb.Router do
     plug :put_root_layout, {TempWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug TempWeb.AuthController
   end
 
   pipeline :api do
@@ -21,6 +22,7 @@ defmodule TempWeb.Router do
 
     # User related routes
     resources "/users", UserController, only: [:index, :show, :new, :create]
+    resources "/sessions", SessionController, only: [:new, :create, :edit, :delete]
   end
 
   # Other scopes may use custom stacks.
