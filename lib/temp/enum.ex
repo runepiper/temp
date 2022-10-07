@@ -5,7 +5,6 @@ defmodule Temp.Enum do
 
   import Ecto.Query, warn: false
   alias Temp.Repo
-  alias Temp.Enum.Gender
   alias Temp.Enum.Sport
 
   @doc """

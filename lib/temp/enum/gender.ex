@@ -7,7 +7,7 @@ defmodule Temp.Enum.Gender do
     field :gender, :string
 
     # relation for sport & users (not working)
-    #belongs_to :user, Temp.Accounts.User
+    has_many :user, Temp.Accounts.User
 
     timestamps()
   end

@@ -22,7 +22,7 @@ defmodule TempWeb.Router do
     get "/", PageController, :index
 
     # User related routes (for login/granting further access)
-    resources "/users", UserController, only: [:new]
+    resources "/users", UserController, only: [:new, :create]
     resources "/sessions", SessionController, only: [:new, :create]
   end
 
@@ -30,9 +30,9 @@ defmodule TempWeb.Router do
   scope "/", TempWeb do
     pipe_through [:browser, :authentication]
 
-    # User related routes
-    resources "/users", UserController, only: [:index, :show, :new, :create]
-    resources "/sessions", SessionController, only: [:new, :create, :edit, :delete]
+    resources "/users", UserController, [:index, :show, :new, :create]
+    resources "/sessions", SessionController, only: [:index, :new, :create, :edit, :delete]
+
     # Gender functionality for users
     live "/genders", GenderLive.Index, :index
     live "/genders/new", GenderLive.Index, :new

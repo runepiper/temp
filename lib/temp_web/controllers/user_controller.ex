@@ -1,9 +1,12 @@
 defmodule TempWeb.UserController do
   use TempWeb, :controller
+  require Logger
 
   alias Temp.Accounts
   alias Temp.Accounts.User
   plug :authentication when action in [:index, :show]
+
+  #loading genders data for registration/edit mask
   plug :load_genders when action in [:new, :create, :edit, :update]
 
   #rendering users-index page, (with authentication check)
@@ -29,6 +32,7 @@ defmodule TempWeb.UserController do
     case Accounts.register_user(user_params) do
       {:ok, user} ->
         conn
+        |> TempWeb.AuthController.login(user)
         |> put_flash(:info, "#{user.name} created!")
         |> redirect(to: Routes.user_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->

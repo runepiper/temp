@@ -11,6 +11,8 @@ defmodule Temp.Accounts.User do
     field :password_hash, :string
     field :role, :string
 
+    belongs_to :gender, Temp.Enum.Gender
+
     timestamps()
   end
 
@@ -20,6 +22,8 @@ defmodule Temp.Accounts.User do
     |> cast(attrs, [:name, :username, :mail, :password, :role])
     |> validate_required([:name, :username, :mail, :password, :role])
     |> validate_length(:username, min: 1, max: 20)
+    |> unique_constraint(:username)
+    |> assoc_constraint(:gender)
   end
 
   #registration changeset for a new user
