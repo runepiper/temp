@@ -20,10 +20,8 @@ defmodule TempWeb.ConnCase do
   using do
     quote do
       # Import conveniences for testing with connections
-      import Plug.Conn
-      import Phoenix.ConnTest
-      import TempWeb.ConnCase
-
+      use Phoenix.ConnTest
+      import Temp.TestHelpers
       alias TempWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
@@ -32,7 +30,12 @@ defmodule TempWeb.ConnCase do
   end
 
   setup tags do
-    Temp.DataCase.setup_sandbox(tags)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Temp.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(Temp.Repo, {:shared, self()})
+    end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

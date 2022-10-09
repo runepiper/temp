@@ -22,7 +22,6 @@ defmodule Temp.Accounts.User do
     user
     |> cast(attrs, [:name, :username, :mail, :password, :gender_id, :role_id])
     |> validate_required([:name, :username, :mail, :password])
-    |> validate_length(:username, min: 1, max: 20)
     |> unique_constraint(:username)
   end
 
@@ -33,7 +32,8 @@ defmodule Temp.Accounts.User do
     |> cast(params, [:name, :mail, :password, :gender_id, :role_id])
     |> validate_required([:name, :username, :mail, :password])
     |> validate_length(:username, min: 1, max: 20)
-    |> validate_length(:password, min: 8, max: 256)
+    |> validate_length(:password, min: 6, max: 20)
+    |> unique_constraint(:username)
     |> put_pass_hash()
   end
 

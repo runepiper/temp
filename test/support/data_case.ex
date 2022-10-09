@@ -24,11 +24,17 @@ defmodule Temp.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Temp.DataCase
+      import Temp.TestHelpers
     end
   end
 
   setup tags do
-    Temp.DataCase.setup_sandbox(tags)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Temp.Repo)
+
+    unless tags[:async] do
+      Ecto.Adapters.SQL.Sandbox.mode(Temp.Repo, {:shared, self()})
+    end
+
     :ok
   end
 
