@@ -33,21 +33,6 @@ defmodule TempWeb.Router do
     resources "/users", UserController, [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:index, :new, :create, :edit, :delete]
 
-    # Gender functionality for users
-    live "/genders", GenderLive.Index, :index
-    live "/genders/new", GenderLive.Index, :new
-    live "/genders/:id/edit", GenderLive.Index, :edit
-
-    live "/genders/:id", GenderLive.Show, :show
-    live "/genders/:id/show/edit", GenderLive.Show, :edit
-
-    # Sport related routes
-    live "/sport", SportLive.Index, :index
-    live "/sport/new", SportLive.Index, :new
-    live "/sport/:id/edit", SportLive.Index, :edit
-
-    live "/sport/:id", SportLive.Show, :show
-    live "/sport/:id/show/edit", SportLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

@@ -8,6 +8,7 @@ defmodule TempWeb.UserController do
 
   #loading genders data for registration/edit mask
   plug :load_genders when action in [:new, :create, :edit, :update]
+  plug :load_roles when action in [:new, :create, :edit, :update]
 
   #rendering users-index page, (with authentication check)
   def index(conn, _params) do
@@ -41,6 +42,10 @@ defmodule TempWeb.UserController do
   end
 
   defp load_genders(conn, _) do
-    assign(conn, :genders, Temp.Enum.list_alphabetical_genders())
+    assign(conn, :genders, Temp.Accounts.list_alphabetical_genders())
+  end
+
+  defp load_roles(conn, _) do
+    assign(conn, :roles, Temp.Accounts.list_alphabetical_roles())
   end
 end

@@ -14,14 +14,4 @@ defmodule TempWeb.UserView do
     |> String.split(" ")
     |> Enum.at(0)
   end
-
-  def role(%Accounts.User{role: role}) do
-    role
-    |> String.split(" ")
-    |> Enum.at(0)
-  end
-
-  def gender_select_options(genders) do
-    for gender <- genders, do: {gender.gender, gender.id}
-  end
 end

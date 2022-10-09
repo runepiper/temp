@@ -10,8 +10,12 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Temp.Enum
+alias Temp.Accounts
 
 for gender <- ~w(divers female male) do
-  Enum.create_gender!(gender)
+  Accounts.create_gender!(gender)
+end
+
+for role <- ~w(admin trainer user) do
+  Accounts.create_role!(role)
 end

@@ -1,6 +1,7 @@
 defmodule Temp.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Temp.Accounts.{Gender, Role}
 
   #user db schema for parsing data
   schema "users" do
@@ -9,9 +10,9 @@ defmodule Temp.Accounts.User do
     field :mail, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    field :role, :string
 
-    belongs_to :gender, Temp.Enum.Gender
+    belongs_to :gender, Gender
+    belongs_to :role, Role
 
     timestamps()
   end
@@ -19,19 +20,18 @@ defmodule Temp.Accounts.User do
   #changeset for user
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:name, :username, :mail, :password, :role])
-    |> validate_required([:name, :username, :mail, :password, :role])
+    |> cast(attrs, [:name, :username, :mail, :password, :gender_id, :role_id])
+    |> validate_required([:name, :username, :mail, :password])
     |> validate_length(:username, min: 1, max: 20)
     |> unique_constraint(:username)
-    |> assoc_constraint(:gender)
   end
 
   #registration changeset for a new user
   def registration_changeset(user, params) do
     user
     |> changeset(params)
-    |> cast(params, [:name, :mail, :password, :role])
-    |> validate_required([:name, :username, :mail, :password, :role])
+    |> cast(params, [:name, :mail, :password, :gender_id, :role_id])
+    |> validate_required([:name, :username, :mail, :password])
     |> validate_length(:username, min: 1, max: 20)
     |> validate_length(:password, min: 8, max: 256)
     |> put_pass_hash()

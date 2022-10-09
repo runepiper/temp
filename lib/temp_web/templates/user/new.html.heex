@@ -6,28 +6,33 @@
 <% end %>
 
 <div>
+    <%= label f, :genders, "Name"%>
     <%= text_input f, :name, placeholder: "Name" %>
     <%= error_tag f, :name %>
 </div>
 <div>
+    <%= label f, :genders, "Username"%>
     <%= text_input f, :username, placeholder: "Username" %>
     <%= error_tag f, :username %>
 </div>
 <div>
-    <%= label f, :genders, "Gender"%>
-    <%= select f, :genders, gender_select_options(@genders),
-        prompt: "Choose a gender" %>
+    <%= label f, :gender_id, "Gender"%>
+    <%= select f, :gender_id, Enum.map(@genders, &{&1.gender, &1.id}),
+    prompt: "Choose a gender" %>
 </div>
 <div>
+    <%= label f, :genders, "E-Mail"%>
     <%= text_input f, :mail, placeholder: "E-Mail" %>
     <%= error_tag f, :mail %>
 </div>
 <div>
+    <%= label f, :genders, "Password"%>
     <%= password_input f, :password, placeholder: "Password" %>
     <%= error_tag f, :password %>
 </div>
 <div>
-    <%= text_input f, :role, placeholder: "Role" %>
-    <%= error_tag f, :role %>
+    <%= label f, :role_id, "Role"%>
+    <%= select f, :role_id, Enum.map(@roles, &{&1.role, &1.id}),
+    prompt: "Choose a role" %>
 </div>
 <%= submit "Create User" %> <% end %>

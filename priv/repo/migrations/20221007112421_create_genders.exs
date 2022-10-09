@@ -4,8 +4,6 @@ defmodule Temp.Repo.Migrations.CreateGenders do
   def change do
     create table(:genders) do
       add :gender, :string
-
-      timestamps()
     end
 
     create unique_index(:genders, [:gender])

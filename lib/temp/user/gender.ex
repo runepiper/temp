@@ -1,15 +1,11 @@
-defmodule Temp.Enum.Gender do
+defmodule Temp.Accounts.Gender do
   use Ecto.Schema
   import Ecto.Changeset
   import Ecto.Query
+  alias Temp.Accounts.Gender
 
   schema "genders" do
     field :gender, :string
-
-    # relation for sport & users (not working)
-    has_many :user, Temp.Accounts.User
-
-    timestamps()
   end
 
   @doc false

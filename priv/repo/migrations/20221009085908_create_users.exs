@@ -7,7 +7,8 @@ defmodule Temp.Repo.Migrations.CreateUsers do
       add :username, :string
       add :mail, :string
       add :password_hash, :string
-      add :role, :string
+      add :gender_id, references("genders")
+      add :role_id, references("roles")
 
       timestamps()
     end
