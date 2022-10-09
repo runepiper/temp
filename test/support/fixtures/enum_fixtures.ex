@@ -19,16 +19,44 @@ defmodule Temp.EnumFixtures do
   end
 
   @doc """
-  Generate a gender.
+  Generate a age_level.
   """
-  def gender_fixture(attrs \\ %{}) do
-    {:ok, gender} =
+  def age_level_fixture(attrs \\ %{}) do
+    {:ok, age_level} =
       attrs
       |> Enum.into(%{
-        gender: "some gender"
+        agelevel: "some agelevel"
       })
-      |> Temp.Enum.create_gender()
+      |> Temp.Enum.create_age_level()
 
-    gender
+    age_level
+  end
+
+  @doc """
+  Generate a training_type.
+  """
+  def training_type_fixture(attrs \\ %{}) do
+    {:ok, training_type} =
+      attrs
+      |> Enum.into(%{
+        trainingtype: "some trainingtype"
+      })
+      |> Temp.Enum.create_training_type()
+
+    training_type
+  end
+
+  @doc """
+  Generate a league.
+  """
+  def league_fixture(attrs \\ %{}) do
+    {:ok, league} =
+      attrs
+      |> Enum.into(%{
+        league: "some league"
+      })
+      |> Temp.Enum.create_league()
+
+    league
   end
 end

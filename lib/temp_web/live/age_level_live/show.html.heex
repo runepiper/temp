@@ -1,0 +1,26 @@
+<h1>Show Age level</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.age_level_show_path(@socket, :show, @age_level)}>
+    <.live_component
+      module={TempWeb.AgeLevelLive.FormComponent}
+      id={@age_level.id}
+      title={@page_title}
+      action={@live_action}
+      age_level={@age_level}
+      return_to={Routes.age_level_show_path(@socket, :show, @age_level)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Agelevel:</strong>
+    <%= @age_level.agelevel %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.age_level_show_path(@socket, :edit, @age_level), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.age_level_index_path(@socket, :index) %></span>

@@ -1,0 +1,26 @@
+<h1>Show League</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.league_show_path(@socket, :show, @league)}>
+    <.live_component
+      module={TempWeb.LeagueLive.FormComponent}
+      id={@league.id}
+      title={@page_title}
+      action={@live_action}
+      league={@league}
+      return_to={Routes.league_show_path(@socket, :show, @league)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>League:</strong>
+    <%= @league.league %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.league_show_path(@socket, :edit, @league), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.league_index_path(@socket, :index) %></span>

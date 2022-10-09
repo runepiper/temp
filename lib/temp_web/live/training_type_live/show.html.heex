@@ -1,0 +1,26 @@
+<h1>Show Training type</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.training_type_show_path(@socket, :show, @training_type)}>
+    <.live_component
+      module={TempWeb.TrainingTypeLive.FormComponent}
+      id={@training_type.id}
+      title={@page_title}
+      action={@live_action}
+      training_type={@training_type}
+      return_to={Routes.training_type_show_path(@socket, :show, @training_type)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Training_type:</strong>
+    <%= @training_type.training_type %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.training_type_show_path(@socket, :edit, @training_type), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.training_type_index_path(@socket, :index) %></span>

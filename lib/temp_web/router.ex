@@ -1,5 +1,6 @@
 defmodule TempWeb.Router do
   use TempWeb, :router
+  import Phoenix.LiveView.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -33,6 +34,44 @@ defmodule TempWeb.Router do
     resources "/users", UserController, [:index, :show, :new, :create]
     resources "/sessions", SessionController, only: [:index, :new, :create, :edit, :delete]
 
+    #live view routes for different Enum Types (protected for logged in users only!)
+    #live sports (for different courses)
+    live "/sports", SportLive.Index, :index
+    live "/sports/new", SportLive.Index, :new
+    live "/sports/:id/edit", SportLive.Index, :edit
+
+    live "/sports/:id", SportLive.Show, :show
+    live "/sports/:id/show/edit", SportLive.Show, :edit
+
+
+
+    #live agelevel (for different agelevels)
+    live "/agelevels", AgeLevelLive.Index, :index
+    live "/agelevels/new", AgeLevelLive.Index, :new
+    live "/agelevels/:id/edit", AgeLevelLive.Index, :edit
+
+    live "/agelevels/:id", AgeLevelLive.Show, :show
+    live "/agelevels/:id/show/edit", AgeLevelLive.Show, :edit
+
+
+
+    #live trainingtype (for different trainingtypes)
+    live "/trainingtypes", TrainingTypeLive.Index, :index
+    live "/trainingtypes/new", TrainingTypeLive.Index, :new
+    live "/trainingtypes/:id/edit", TrainingTypeLive.Index, :edit
+
+    live "/trainingtypes/:id", TrainingTypeLive.Show, :show
+    live "/trainingtypes/:id/show/edit", TrainingTypeLive.Show, :edit
+
+
+
+    #live league (for different leagues)
+    live "/leagues", LeagueLive.Index, :index
+    live "/leagues/new", LeagueLive.Index, :new
+    live "/leagues/:id/edit", LeagueLive.Index, :edit
+
+    live "/leagues/:id", LeagueLive.Show, :show
+    live "/leagues/:id/show/edit", LeagueLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

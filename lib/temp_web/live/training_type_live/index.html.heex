@@ -1,0 +1,39 @@
+<h1>Listing Trainingtypes</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.training_type_index_path(@socket, :index)}>
+    <.live_component
+      module={TempWeb.TrainingTypeLive.FormComponent}
+      id={@training_type.id || :new}
+      title={@page_title}
+      action={@live_action}
+      training_type={@training_type}
+      return_to={Routes.training_type_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Trainingtype</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="training_types">
+    <%= for training_type <- @training_types do %>
+      <tr id={"training_type-#{training_type.id}"}>
+        <td><%= training_type.training_type %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.training_type_show_path(@socket, :show, training_type) %></span>
+          <span><%= live_patch "Edit", to: Routes.training_type_index_path(@socket, :edit, training_type) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: training_type.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Training type", to: Routes.training_type_index_path(@socket, :new) %></span>
