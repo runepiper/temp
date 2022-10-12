@@ -4,10 +4,10 @@
   <.modal return_to={Routes.age_level_index_path(@socket, :index)}>
     <.live_component
       module={TempWeb.AgeLevelLive.FormComponent}
-      id={@age_level.id || :new}
+      id={@agelevel.id || :new}
       title={@page_title}
       action={@live_action}
-      age_level={@age_level}
+      age_level={@agelevel}
       return_to={Routes.age_level_index_path(@socket, :index)}
     />
   </.modal>
@@ -22,14 +22,14 @@
     </tr>
   </thead>
   <tbody id="age_levels">
-    <%= for age_level <- @age_levels do %>
-      <tr id={"age_level-#{age_level.id}"}>
-        <td><%= age_level.age_level %></td>
+    <%= for agelevel <- @agelevels do %>
+      <tr id={"agelevel-#{agelevel.id}"}>
+        <td><%= agelevel.agelevel %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.age_level_show_path(@socket, :show, age_level) %></span>
-          <span><%= live_patch "Edit", to: Routes.age_level_index_path(@socket, :edit, age_level) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: age_level.id, data: [confirm: "Are you sure?"] %></span>
+          <span><%= live_redirect "Show", to: Routes.age_level_show_path(@socket, :show, agelevel) %></span>
+          <span><%= live_patch "Edit", to: Routes.age_level_index_path(@socket, :edit, agelevel) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: agelevel.id, data: [confirm: "Are you sure?"] %></span>
         </td>
       </tr>
     <% end %>

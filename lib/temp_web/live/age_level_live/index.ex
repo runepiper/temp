@@ -6,7 +6,7 @@ defmodule TempWeb.AgeLevelLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :agelevels, list_age_levels())}
+    {:ok, assign(socket, :agelevels, Enum.list_age_levels())}
   end
 
   @impl true
@@ -17,27 +17,27 @@ defmodule TempWeb.AgeLevelLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Age level")
-    |> assign(:age_level, Enum.get_age_level!(id))
+    |> assign(:agelevel, Enum.get_age_level!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Age level")
-    |> assign(:age_level, %AgeLevel{})
+    |> assign(:agelevel, %AgeLevel{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Agelevels")
-    |> assign(:age_level, nil)
+    |> assign(:agelevel, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    age_level = Enum.get_age_level!(id)
-    {:ok, _} = Enum.delete_age_level(age_level)
+    agelevel = Enum.get_age_level!(id)
+    {:ok, _} = Enum.delete_age_level(agelevel)
 
-    {:noreply, assign(socket, :agelevels, list_age_levels())}
+    {:noreply, assign(socket, :agelevels, Enum.list_age_levels())}
   end
 
   defp list_age_levels do

@@ -14,22 +14,22 @@ defmodule TempWeb.TrainingTypeLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"training_type" => training_type_params}, socket) do
+  def handle_event("validate", %{"training_type" => trainingtype_params}, socket) do
     changeset =
       socket.assigns.training_type
-      |> Enum.change_training_type(training_type_params)
+      |> Enum.change_training_type(trainingtype_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
-  def handle_event("save", %{"training_type" => training_type_params}, socket) do
-    save_training_type(socket, socket.assigns.action, training_type_params)
+  def handle_event("save", %{"training_type" => trainingtype_params}, socket) do
+    save_training_type(socket, socket.assigns.action, trainingtype_params)
   end
 
-  defp save_training_type(socket, :edit, training_type_params) do
-    case Enum.update_training_type(socket.assigns.training_type, training_type_params) do
-      {:ok, _training_type} ->
+  defp save_training_type(socket, :edit, trainingtype_params) do
+    case Enum.update_training_type(socket.assigns.training_type, trainingtype_params) do
+      {:ok, _trainingtype} ->
         {:noreply,
          socket
          |> put_flash(:info, "Training type updated successfully")
@@ -40,9 +40,9 @@ defmodule TempWeb.TrainingTypeLive.FormComponent do
     end
   end
 
-  defp save_training_type(socket, :new, training_type_params) do
-    case Enum.create_training_type(training_type_params) do
-      {:ok, _training_type} ->
+  defp save_training_type(socket, :new, trainingtype_params) do
+    case Enum.create_training_type(trainingtype_params) do
+      {:ok, _trainingtype} ->
         {:noreply,
          socket
          |> put_flash(:info, "Training type created successfully")

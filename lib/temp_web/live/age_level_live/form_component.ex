@@ -14,22 +14,22 @@ defmodule TempWeb.AgeLevelLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"age_level" => age_level_params}, socket) do
+  def handle_event("validate", %{"age_level" => agelevel_params}, socket) do
     changeset =
       socket.assigns.age_level
-      |> Enum.change_age_level(age_level_params)
+      |> Enum.change_age_level(agelevel_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
 
-  def handle_event("save", %{"age_level" => age_level_params}, socket) do
-    save_age_level(socket, socket.assigns.action, age_level_params)
+  def handle_event("save", %{"age_level" => agelevel_params}, socket) do
+    save_age_level(socket, socket.assigns.action, agelevel_params)
   end
 
-  defp save_age_level(socket, :edit, age_level_params) do
-    case Enum.update_age_level(socket.assigns.age_level, age_level_params) do
-      {:ok, _age_level} ->
+  defp save_age_level(socket, :edit, agelevel_params) do
+    case Enum.update_age_level(socket.assigns.age_level, agelevel_params) do
+      {:ok, _agelevel} ->
         {:noreply,
          socket
          |> put_flash(:info, "Age level updated successfully")
@@ -40,9 +40,9 @@ defmodule TempWeb.AgeLevelLive.FormComponent do
     end
   end
 
-  defp save_age_level(socket, :new, age_level_params) do
-    case Enum.create_age_level(age_level_params) do
-      {:ok, _age_level} ->
+  defp save_age_level(socket, :new, agelevel_params) do
+    case Enum.create_age_level(agelevel_params) do
+      {:ok, _agelevel} ->
         {:noreply,
          socket
          |> put_flash(:info, "Age level created successfully")

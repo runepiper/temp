@@ -6,7 +6,7 @@ defmodule TempWeb.TrainingTypeLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :trainingtypes, list_training_types())}
+    {:ok, assign(socket, :trainingtypes, Enum.list_training_types())}
   end
 
   @impl true
@@ -17,27 +17,27 @@ defmodule TempWeb.TrainingTypeLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Training type")
-    |> assign(:training_type, Enum.get_training_type!(id))
+    |> assign(:trainingtype, Enum.get_training_type!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Training type")
-    |> assign(:training_type, %TrainingType{})
+    |> assign(:trainingtype, %TrainingType{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Trainingtypes")
-    |> assign(:training_type, nil)
+    |> assign(:trainingtype, nil)
   end
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    training_type = Enum.get_training_type!(id)
-    {:ok, _} = Enum.delete_training_type(training_type)
+    trainingtype = Enum.get_training_type!(id)
+    {:ok, _} = Enum.delete_training_type(trainingtype)
 
-    {:noreply, assign(socket, :trainingtypes, list_training_types())}
+    {:noreply, assign(socket, :trainingtypes, Enum.list_training_types())}
   end
 
   defp list_training_types do
