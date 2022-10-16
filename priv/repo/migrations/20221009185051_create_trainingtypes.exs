@@ -8,6 +8,6 @@ defmodule Temp.Repo.Migrations.CreateTrainingtypes do
       timestamps()
     end
 
-    create unique_index(:trainingstypes, [:trainingtype])
+    create unique_index(:trainingtypes, [:trainingtype])
   end
 end

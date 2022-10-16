@@ -31,8 +31,8 @@ defmodule TempWeb.Router do
   scope "/", TempWeb do
     pipe_through [:browser, :authentication]
 
-    resources "/users", UserController, [:index, :show, :new, :create]
-    resources "/sessions", SessionController, only: [:index, :new, :create, :edit, :delete]
+    resources "/users", UserController, [:index, :show, :new, :create, :edit, :delete]
+    resources "/sessions", SessionController, only: [:index, :new, :create, :delete]
 
     #live view routes for different Enum Types (protected for logged in users only!)
     #live sports (for different courses)
@@ -43,8 +43,6 @@ defmodule TempWeb.Router do
     live "/sports/:id", SportLive.Show, :show
     live "/sports/:id/show/edit", SportLive.Show, :edit
 
-
-
     #live agelevel (for different agelevels)
     live "/agelevels", AgeLevelLive.Index, :index
     live "/agelevels/new", AgeLevelLive.Index, :new
@@ -53,8 +51,6 @@ defmodule TempWeb.Router do
     live "/agelevels/:id", AgeLevelLive.Show, :show
     live "/agelevels/:id/show/edit", AgeLevelLive.Show, :edit
 
-
-
     #live trainingtype (for different trainingtypes)
     live "/trainingtypes", TrainingTypeLive.Index, :index
     live "/trainingtypes/new", TrainingTypeLive.Index, :new
@@ -62,8 +58,6 @@ defmodule TempWeb.Router do
 
     live "/trainingtypes/:id", TrainingTypeLive.Show, :show
     live "/trainingtypes/:id/show/edit", TrainingTypeLive.Show, :edit
-
-
 
     #live league (for different leagues)
     live "/leagues", LeagueLive.Index, :index

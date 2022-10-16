@@ -9,6 +9,8 @@
       <root url="file://$PROJECT_DIR$/_build/test/lib/html_entities/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/html_entities/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/html_entities/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/html_entities/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/test/lib/html_entities/ebin" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
@@ -21,6 +23,7 @@
       <root url="file://$PROJECT_DIR$/deps/html_entities/lib" />
       <root url="file://$PROJECT_DIR$/deps/html_entities/lib" />
       <root url="file://$PROJECT_DIR$/deps/html_entities/lib" />
+      <root url="file://$PROJECT_DIR$/../sports/deps/html_entities/lib" />
     </SOURCES>
   </library>
 </component>

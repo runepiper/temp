@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="tailwind" type="mix">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../sports/_build/dev/lib/tailwind/ebin" />
+      <root url="file://$PROJECT_DIR$/../sports/_build/dev/lib/tailwind/ebin" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../sports/deps/tailwind/lib" />
+      <root url="file://$PROJECT_DIR$/../sports/deps/tailwind/lib" />
+    </SOURCES>
+  </library>
+</component>

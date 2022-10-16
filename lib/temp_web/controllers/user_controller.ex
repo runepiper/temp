@@ -1,14 +1,13 @@
 defmodule TempWeb.UserController do
   use TempWeb, :controller
-  require Logger
 
   alias Temp.Accounts
   alias Temp.Accounts.User
   plug :authentication when action in [:index, :show]
 
   #loading genders data for registration/edit mask
-  plug :load_genders when action in [:new, :create, :edit, :update]
-  plug :load_roles when action in [:new, :create, :edit, :update]
+  plug :load_genders when action in [:new, :create, :update]
+  plug :load_roles when action in [:new, :create, :update]
 
   #rendering users-index page, (with authentication check)
   def index(conn, _params) do
@@ -41,6 +40,18 @@ defmodule TempWeb.UserController do
     end
   end
 
+  #editing a user
+  def edit(conn, %{"user" => user_params}) do
+    case Accounts.change_user(user_params) do
+      {:ok, user} ->
+        conn
+        |> redirect(to: Routes.user_path(conn, :edit))
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "index.html", changeset: changeset)
+    end
+  end
+
+  #loading trigger for select fields (gender & roles)
   defp load_genders(conn, _) do
     assign(conn, :genders, Temp.Accounts.list_alphabetical_genders())
   end
