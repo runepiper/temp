@@ -1,5 +1,12 @@
+/* Tailwind-CSS Integration for Styles */
+/* Comment in, when custom css is in place (see the files below!) */
+/*@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*/
+
 /* This file is for your main application CSS */
-@import "./phoenix.css";
+@import "./phoenix.css";*/
 
 /* Alerts and form errors used by phx.new */
 .alert {

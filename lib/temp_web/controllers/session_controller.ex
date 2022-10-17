@@ -8,9 +8,9 @@ defmodule TempWeb.SessionController do
   #function for creating a new user-related session
   def create(
     conn,
-    %{"session" => %{"username" => username, "password" => pass}}
+    %{"session" => %{"mail" => mail, "password" => pass}}
   ) do
-    case Temp.Accounts.authenticate_by_username_and_pass(username, pass) do
+    case Temp.Accounts.authenticate_by_mail_and_pass(mail, pass) do
       {:ok, user} ->
         conn
         |> TempWeb.AuthController.login(user)

@@ -37,6 +37,9 @@
       <root url="file://$PROJECT_DIR$/_build/test/lib/comeonin/ebin" />
       <root url="file://$PROJECT_DIR$/_build/dev/lib/comeonin/ebin" />
       <root url="file://$PROJECT_DIR$/_build/test/lib/comeonin/ebin" />
+      <root url="file://$PROJECT_DIR$/../sports/_build/dev/lib/comeonin/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/comeonin/ebin" />
+      <root url="file://$PROJECT_DIR$/_build/dev/lib/comeonin/ebin" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
@@ -51,6 +54,7 @@
       <root url="file://$PROJECT_DIR$/deps/comeonin/lib" />
       <root url="file://$PROJECT_DIR$/../sports/deps/comeonin/lib" />
       <root url="file://$PROJECT_DIR$/../sports/deps/comeonin/lib" />
+      <root url="file://$PROJECT_DIR$/deps/comeonin/lib" />
     </SOURCES>
   </library>
 </component>

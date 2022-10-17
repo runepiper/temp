@@ -24,6 +24,7 @@
       <root url="file://$PROJECT_DIR$/deps/html_entities/lib" />
       <root url="file://$PROJECT_DIR$/deps/html_entities/lib" />
       <root url="file://$PROJECT_DIR$/../sports/deps/html_entities/lib" />
+      <root url="file://$PROJECT_DIR$/deps/html_entities/lib" />
     </SOURCES>
   </library>
 </component>
