@@ -31,7 +31,7 @@ defmodule TempWeb.Router do
   scope "/", TempWeb do
     pipe_through [:browser, :authentication]
 
-    resources "/users", UserController, [:index, :show, :new, :create, :edit, :delete]
+    resources "/users", UserController, [:index, :show, :edit, :delete]
     resources "/sessions", SessionController, only: [:index, :new, :create, :delete]
 
     #live view routes for different Enum Types (protected for logged in users only!)

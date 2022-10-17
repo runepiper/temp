@@ -3,11 +3,11 @@ defmodule TempWeb.UserController do
 
   alias Temp.Accounts
   alias Temp.Accounts.User
-  plug :authentication when action in [:index, :show]
+  plug :authentication when action in [:index, :show, :edit]
 
   #loading genders data for registration/edit mask
-  plug :load_genders when action in [:new, :create, :update]
-  plug :load_roles when action in [:new, :create, :update]
+  plug :load_genders when action in [:index, :new, :create, :edit]
+  plug :load_roles when action in [:index, :new, :create, :edit]
 
   #rendering users-index page, (with authentication check)
   def index(conn, _params) do
@@ -40,14 +40,23 @@ defmodule TempWeb.UserController do
     end
   end
 
-  #editing a user
-  def edit(conn, %{"user" => user_params}) do
-    case Accounts.change_user(user_params) do
+  #editing an existing user
+  def edit(conn, %{"id" => id}) do
+      user = Accounts.get_user!(id)
+      changeset = Accounts.change_user(user)
+      render(conn, "edit.html", user: user, changeset: changeset)
+  end
+
+  #updates an existing user in the database
+  def update(conn, %{"id" => id, "user" => user_params}) do
+    user = Accounts.get_user!(id)
+    case Accounts.update_user(user, user_params) do
       {:ok, user} ->
         conn
-        |> redirect(to: Routes.user_path(conn, :edit))
+        |> put_flash(:info, "#{user.name} updated succsessfully!")
+        |> redirect(to: Routes.user_path(conn, :show, user))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "index.html", changeset: changeset)
+        render(conn, "edit.html", user: user, changeset: changeset)
     end
   end
 

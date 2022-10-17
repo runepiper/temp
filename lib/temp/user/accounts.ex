@@ -43,6 +43,22 @@ defmodule Temp.Accounts do
   end
 
   @doc """
+    Get the changeset for changing an existing user.
+  """
+  def change_user(%User{} = user) do
+    User.changeset(user, %{})
+  end
+
+  @doc """
+    update function for changing an existing user.
+  """
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
     user-registration functions.
   """
   #change registration user
@@ -55,14 +71,6 @@ defmodule Temp.Accounts do
     %User{}
     |> User.registration_changeset(attrs)
     |> Repo.insert()
-  end
-
-  @doc """
-    change a existing user.
-  """
-  #change a user
-  def change_user(%User{} = user) do
-    User.changeset(user, %{})
   end
 
   @doc """

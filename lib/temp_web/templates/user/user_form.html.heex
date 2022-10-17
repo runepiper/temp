@@ -1,5 +1,4 @@
-<h1>Edit User</h1>
-<%= form_for @changeset, Routes.user_path(@conn, :edit), fn f -> %>
+<%= form_for @changeset, @action, fn f -> %>
 <%= if @changeset.action do %> <div class="alert alert-danger">
     <p>Oops, something went wrong! Please check the errors below.</p>
   </div>
@@ -35,4 +34,5 @@
     <%= select f, :role_id, Enum.map(@roles, &{&1.role, &1.id}),
     prompt: "Choose a role" %>
 </div>
-<%= submit "Update User" %> <% end %>
+<%= submit "Save" %>
+<% end %>
