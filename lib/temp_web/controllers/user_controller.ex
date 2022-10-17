@@ -3,7 +3,7 @@ defmodule TempWeb.UserController do
 
   alias Temp.Accounts
   alias Temp.Accounts.User
-  plug :authentication when action in [:index, :show, :edit]
+  plug :authentication when action in [:index, :show, :edit, :delete]
 
   #loading genders data for registration/edit mask
   plug :load_genders when action in [:index, :new, :create, :edit]
@@ -58,6 +58,15 @@ defmodule TempWeb.UserController do
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
     end
+  end
+
+  #deletes a user from the database
+  def delete(conn, %{"id" => id}) do
+    user = Accounts.get_user!(id)
+    {:ok, user} = Accounts.delete_user(user)
+    conn
+    |> put_flash(:info, "User deleted successsfully!")
+    |> redirect(to: Routes.user_path(conn, :index))
   end
 
   #loading trigger for select fields (gender & roles)

@@ -59,6 +59,14 @@ defmodule Temp.Accounts do
   end
 
   @doc """
+    delete function for an existing user in database.
+  """
+  def delete_user(%User{} = user) do
+    user
+    |> Repo.delete()
+  end
+
+  @doc """
     user-registration functions.
   """
   #change registration user
