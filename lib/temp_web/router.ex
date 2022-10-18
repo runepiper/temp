@@ -16,12 +16,22 @@ defmodule TempWeb.Router do
     plug :accepts, ["json"]
   end
 
-  # JSON-API scope for custom Data handling.
+  #open JSON-API scope for general Data handling (CR only!).
   scope "/api", TempWeb do
     pipe_through :api
 
+    #roll dice (first JSON-API) test only!
     get "/roll", RollController, :index
     get "/roll/:num_dice", RollController, :show
+
+    #show user via JSON
+    resources "/users", API_UserController, only: [:show]
+  end
+
+  #protected JSON-API scope for sensible Data handling (CRUD).
+  scope "/api", TempWeb do
+    pipe_through :api
+
   end
 
   #general HTTP(S) scope (for site-access)
