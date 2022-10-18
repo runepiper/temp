@@ -7,12 +7,6 @@
 # General application configuration
 import Config
 
-config :temp, Temp.Repo,
-  database: "temp_repo",
-  username: "user",
-  password: "pass",
-  hostname: "localhost"
-
 config :temp,
   ecto_repos: [Temp.Repo]
 
@@ -22,6 +16,16 @@ config :temp, TempWeb.Endpoint,
   render_errors: [view: TempWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Temp.PubSub,
   live_view: [signing_salt: "sJXsye5S"]
+
+# configuration for tailwind-css integration
+config :tailwind, version: "3.1.8", default: [
+  args: ~w(
+    --config=tailwind.config.js
+    --input=css/app.css
+    --output=../priv/static/assets/app.css
+  ),
+  cd: Path.expand("../assets", __DIR__)
+]
 
 # Configures the mailer
 #
