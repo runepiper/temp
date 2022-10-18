@@ -4,6 +4,38 @@
 </section>
 
 <section class="row">
+    <article class="column">
+        <h2>App Navigation</h2>
+        <ul>
+          <li>
+            <%= link "API (not working!)", to: Routes.user_path(@conn, :index)%>
+          </li>
+          <li>
+            <%= link "Users (login first)", to: Routes.user_path(@conn, :index)%>
+          </li>
+          <li>
+            <%= link "Sports", to: Routes.sport_index_path(@conn, :index)%>
+          </li>
+          <li>
+            <%= link "AgeLevels", to: Routes.age_level_index_path(@conn, :index)%>
+          </li>
+          <li>
+            <%= link "Trainingtypes", to: Routes.training_type_index_path(@conn, :index)%>
+          </li>
+          <li>
+            <%= link "Leagues", to: Routes.league_index_path(@conn, :index)%>
+          </li>
+        </ul>
+    </article>
+    <article class="column">
+        <h2>Other Stuff</h2>
+        <ul>
+
+        </ul>
+    </article>
+</section>
+
+<section class="row">
   <article class="column">
     <h2>Resources</h2>
     <ul>
