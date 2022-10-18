@@ -26,12 +26,14 @@ defmodule TempWeb.Router do
 
     #show user via JSON
     resources "/users", API_UserController, only: [:show]
+
+    #show sport via JSON
+    resources "/sports", API_EnumController, [:show]
   end
 
   #protected JSON-API scope for sensible Data handling (CRUD).
   scope "/api", TempWeb do
     pipe_through :api
-
   end
 
   #general HTTP(S) scope (for site-access)
