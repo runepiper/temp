@@ -16,7 +16,15 @@ defmodule TempWeb.Router do
     plug :accepts, ["json"]
   end
 
-  #general open scope (access for all)
+  # JSON-API scope for custom Data handling.
+  scope "/api", TempWeb do
+    pipe_through :api
+
+    get "/roll", RollController, :index
+    get "/roll/:num_dice", RollController, :show
+  end
+
+  #general HTTP(S) scope (for site-access)
   scope "/", TempWeb do
     pipe_through :browser
 
@@ -27,7 +35,7 @@ defmodule TempWeb.Router do
     resources "/sessions", SessionController, only: [:new, :create]
   end
 
-  #protected scope (access for management only)
+  #protected HTTP(S) scope (access for management only)
   scope "/", TempWeb do
     pipe_through [:browser, :authentication]
 
@@ -67,11 +75,6 @@ defmodule TempWeb.Router do
     live "/leagues/:id", LeagueLive.Show, :show
     live "/leagues/:id/show/edit", LeagueLive.Show, :edit
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", TempWeb do
-  #   pipe_through :api
-  # end
 
   # Enables LiveDashboard only for development
   #

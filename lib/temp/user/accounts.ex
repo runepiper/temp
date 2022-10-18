@@ -81,13 +81,15 @@ defmodule Temp.Accounts do
     |> Repo.insert()
   end
 
+
+
   @doc """
     user-authentication function with name & password.
   """
   #authenticate a user by params
   def authenticate_by_mail_and_pass(mail, given_pass) do
-    user = get_user_by(mail: mail)
-    cond do
+  user = get_user_by(mail: mail)
+  cond do
       user && Pbkdf2.verify_pass(given_pass, user.password_hash) ->
         {:ok, user}
 
